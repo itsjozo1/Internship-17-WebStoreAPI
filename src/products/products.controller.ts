@@ -36,6 +36,12 @@ export class ProductsController {
     return this.productsService.findOne(+id);
   }
 
+  @Get('search/:title')
+  @ApiOkResponse({ type: ProductEntity, isArray: true })
+  findByTitle(@Param('title') title: string) {
+    return this.productsService.findByTitle(title);
+  }
+
   @Patch(':id')
   @ApiOkResponse({ type: ProductEntity, isArray: true })
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
