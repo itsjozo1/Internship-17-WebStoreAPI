@@ -4,39 +4,9 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    create(createUserDto: CreateUserDto): import(".prisma/client").Prisma.Prisma__UserClient<{
-        id: number;
-        email: string;
-        password: string;
-        name: string;
-        isAdmin: boolean;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    findAll(): import(".prisma/client").Prisma.PrismaPromise<{
-        id: number;
-        email: string;
-        password: string;
-        name: string;
-        isAdmin: boolean;
-    }[]>;
-    findOne(id: string): import(".prisma/client").Prisma.Prisma__UserClient<{
-        id: number;
-        email: string;
-        password: string;
-        name: string;
-        isAdmin: boolean;
-    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    update(id: string, updateUserDto: UpdateUserDto): import(".prisma/client").Prisma.Prisma__UserClient<{
-        id: number;
-        email: string;
-        password: string;
-        name: string;
-        isAdmin: boolean;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: string): import(".prisma/client").Prisma.Prisma__UserClient<{
-        id: number;
-        email: string;
-        password: string;
-        name: string;
-        isAdmin: boolean;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    create(createUserDto: CreateUserDto): any;
+    findAll(): any;
+    findOne(id: string): any;
+    update(id: string, updateUserDto: UpdateUserDto): any;
+    remove(id: string): any;
 }

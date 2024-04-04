@@ -4,39 +4,9 @@ import { UpdateCartDto } from './dto/update-cart.dto';
 export declare class CartsController {
     private readonly cartsService;
     constructor(cartsService: CartsService);
-    create(createCartDto: CreateCartDto): import(".prisma/client").Prisma.Prisma__CartClient<{
-        id: number;
-        userId: number;
-        total: number;
-        createdAt: Date;
-        updatedAt: Date;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    findAll(): import(".prisma/client").Prisma.PrismaPromise<{
-        id: number;
-        userId: number;
-        total: number;
-        createdAt: Date;
-        updatedAt: Date;
-    }[]>;
-    findOne(id: string): import(".prisma/client").Prisma.Prisma__CartClient<{
-        id: number;
-        userId: number;
-        total: number;
-        createdAt: Date;
-        updatedAt: Date;
-    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    update(id: string, updateCartDto: UpdateCartDto): import(".prisma/client").Prisma.Prisma__CartClient<{
-        id: number;
-        userId: number;
-        total: number;
-        createdAt: Date;
-        updatedAt: Date;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: string): import(".prisma/client").Prisma.Prisma__CartClient<{
-        id: number;
-        userId: number;
-        total: number;
-        createdAt: Date;
-        updatedAt: Date;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    create(createCartDto: CreateCartDto): any;
+    findAll(): any;
+    findOne(id: string): any;
+    update(id: string, updateCartDto: UpdateCartDto): any;
+    remove(id: string): any;
 }

@@ -1,5 +1,4 @@
-import { CreateOrderDto } from './create-order.dto';
-declare const UpdateOrderDto_base: import("@nestjs/common").Type<Partial<CreateOrderDto>>;
+declare const UpdateOrderDto_base: any;
 export declare class UpdateOrderDto extends UpdateOrderDto_base {
 }
 export {};

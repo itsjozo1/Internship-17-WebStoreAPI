@@ -4,52 +4,10 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export declare class ProductsService {
     private prisma;
     constructor(prisma: PrismaService);
-    create(createProductDto: CreateProductDto): import(".prisma/client").Prisma.Prisma__ProductClient<{
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        description: string;
-        image: string;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    findAll(): import(".prisma/client").Prisma.PrismaPromise<{
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        description: string;
-        image: string;
-    }[]>;
-    findOne(id: number): import(".prisma/client").Prisma.Prisma__ProductClient<{
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        description: string;
-        image: string;
-    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    findByTitle(title: string): import(".prisma/client").Prisma.PrismaPromise<{
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        description: string;
-        image: string;
-    }[]>;
-    update(id: number, updateProductDto: UpdateProductDto): import(".prisma/client").Prisma.Prisma__ProductClient<{
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        description: string;
-        image: string;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: number): import(".prisma/client").Prisma.Prisma__ProductClient<{
-        id: number;
-        title: string;
-        price: number;
-        category: string;
-        description: string;
-        image: string;
-    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    create(createProductDto: CreateProductDto): any;
+    findAll(): any;
+    findOne(id: number): any;
+    findByTitle(title: string): any;
+    update(id: number, updateProductDto: UpdateProductDto): any;
+    remove(id: number): any;
 }

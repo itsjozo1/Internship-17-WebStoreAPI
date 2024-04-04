@@ -1,5 +1,4 @@
-import { CreateWishlistDto } from './create-wishlist.dto';
-declare const UpdateWishlistDto_base: import("@nestjs/common").Type<Partial<CreateWishlistDto>>;
+declare const UpdateWishlistDto_base: any;
 export declare class UpdateWishlistDto extends UpdateWishlistDto_base {
 }
 export {};
