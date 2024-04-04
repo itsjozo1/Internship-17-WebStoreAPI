@@ -1,6 +1,9 @@
 import Product from './pages/Product/Product';
 import ProductsPage from './pages/ProductsPage/ProductsPage';
 import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 function App() {
   return (
@@ -8,7 +11,9 @@ function App() {
       <Routes>
         <Route path="/" element={<ProductsPage />} />
         <Route path="/products/:id" element={<Product />} />
-        <Route path="*" element={<h1>404 - Not Found</h1>} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
