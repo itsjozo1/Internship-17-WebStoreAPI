@@ -4,10 +4,52 @@ import { UpdateProductDto } from './dto/update-product.dto';
 export declare class ProductsController {
     private readonly productsService;
     constructor(productsService: ProductsService);
-    create(createProductDto: CreateProductDto): any;
-    findAll(): any;
-    findOne(id: string): any;
-    findByTitle(title: string): any;
-    update(id: string, updateProductDto: UpdateProductDto): any;
-    remove(id: string): any;
+    create(createProductDto: CreateProductDto): import(".prisma/client").Prisma.Prisma__ProductClient<{
+        id: number;
+        title: string;
+        price: number;
+        category: string;
+        description: string;
+        image: string;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    findAll(): import(".prisma/client").Prisma.PrismaPromise<{
+        id: number;
+        title: string;
+        price: number;
+        category: string;
+        description: string;
+        image: string;
+    }[]>;
+    findOne(id: string): import(".prisma/client").Prisma.Prisma__ProductClient<{
+        id: number;
+        title: string;
+        price: number;
+        category: string;
+        description: string;
+        image: string;
+    }, null, import("@prisma/client/runtime/library").DefaultArgs>;
+    findByTitle(title: string): import(".prisma/client").Prisma.PrismaPromise<{
+        id: number;
+        title: string;
+        price: number;
+        category: string;
+        description: string;
+        image: string;
+    }[]>;
+    update(id: string, updateProductDto: UpdateProductDto): import(".prisma/client").Prisma.Prisma__ProductClient<{
+        id: number;
+        title: string;
+        price: number;
+        category: string;
+        description: string;
+        image: string;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    remove(id: string): import(".prisma/client").Prisma.Prisma__ProductClient<{
+        id: number;
+        title: string;
+        price: number;
+        category: string;
+        description: string;
+        image: string;
+    }, never, import("@prisma/client/runtime/library").DefaultArgs>;
 }

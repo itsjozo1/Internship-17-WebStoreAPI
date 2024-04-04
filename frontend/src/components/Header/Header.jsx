@@ -1,11 +1,9 @@
-import { useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import ProductsPage from "../ProductsPage/ProductsPage";
-import Product from "../Product/Product";
-import classes from "./index.module.css";
+import { useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import classes from './index.module.css';
 
-const Home = () => {
-  const [searchValue, setSearchValue] = useState("");
+const Header = () => {
+  const [searchValue, setSearchValue] = useState('');
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -20,7 +18,7 @@ const Home = () => {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+    if (event.key === 'Enter') {
       handleSearchButtonClick(event);
     }
   };
@@ -53,13 +51,8 @@ const Home = () => {
           </button>
         </nav>
       </header>
-      <Routes>
-        <Route path="/" element={<ProductsPage />} />
-        <Route path="/products/:id" element={<Product />} />
-        <Route path="*" element={<h1>404 - Not Found</h1>} />
-      </Routes>
     </>
   );
 };
 
-export default Home;
+export default Header;
