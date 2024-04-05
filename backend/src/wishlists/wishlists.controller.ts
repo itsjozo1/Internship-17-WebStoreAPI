@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Req,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { WishlistsService } from './wishlists.service';
 import { CreateWishlistDto } from './dto/create-wishlist.dto';
@@ -38,22 +39,22 @@ export class WishlistsController {
 
   @Get(':id')
   @ApiOkResponse({ type: WishlistEntity, isArray: true })
-  findOne(@Param('id') id: string) {
-    return this.wishlistsService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.wishlistsService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: WishlistEntity, isArray: true })
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateWishlistDto: UpdateWishlistDto,
   ) {
-    return this.wishlistsService.update(+id, updateWishlistDto);
+    return this.wishlistsService.update(id, updateWishlistDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: WishlistEntity, isArray: true })
-  remove(@Param('id') id: string) {
-    return this.wishlistsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.wishlistsService.remove(id);
   }
 }

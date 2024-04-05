@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CartProductsService } from './cart-products.service';
 import { CreateCartProductDto } from './dto/create-cart-product.dto';
@@ -37,24 +38,24 @@ export class CartProductsController {
   @Get(':id')
   @ApiOkResponse({ type: CreateCartProductDto, isArray: true })
   @UseGuards(UserAuthGuard)
-  findOne(@Param('id') id: string) {
-    return this.cartProductsService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.cartProductsService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: CreateCartProductDto, isArray: true })
   @UseGuards(UserAuthGuard)
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateCartProductDto: UpdateCartProductDto,
   ) {
-    return this.cartProductsService.update(+id, updateCartProductDto);
+    return this.cartProductsService.update(id, updateCartProductDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: CreateCartProductDto, isArray: true })
   @UseGuards(UserAuthGuard)
-  remove(@Param('id') id: string) {
-    return this.cartProductsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.cartProductsService.remove(id);
   }
 }

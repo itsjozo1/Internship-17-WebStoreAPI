@@ -31,16 +31,16 @@ let ProductsController = class ProductsController {
         return this.productsService.findAll();
     }
     findOne(id) {
-        return this.productsService.findOne(+id);
+        return this.productsService.findOne(id);
     }
     findByTitle(title) {
         return this.productsService.findByTitle(title);
     }
     update(id, updateProductDto) {
-        return this.productsService.update(+id, updateProductDto);
+        return this.productsService.update(id, updateProductDto);
     }
     remove(id) {
-        return this.productsService.remove(+id);
+        return this.productsService.remove(id);
     }
 };
 exports.ProductsController = ProductsController;
@@ -63,9 +63,9 @@ __decorate([
 __decorate([
     (0, common_1.Get)(':id'),
     (0, swagger_1.ApiOkResponse)({ type: product_entity_1.ProductEntity, isArray: true }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "findOne", null);
 __decorate([
@@ -80,19 +80,19 @@ __decorate([
     (0, common_1.Patch)(':id'),
     (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: product_entity_1.ProductEntity, isArray: true }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_product_dto_1.UpdateProductDto]),
+    __metadata("design:paramtypes", [Number, update_product_dto_1.UpdateProductDto]),
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: product_entity_1.ProductEntity, isArray: true }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "remove", null);
 exports.ProductsController = ProductsController = __decorate([

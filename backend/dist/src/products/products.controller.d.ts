@@ -20,7 +20,7 @@ export declare class ProductsController {
         description: string;
         image: string;
     }[]>;
-    findOne(id: string): import(".prisma/client").Prisma.Prisma__ProductClient<{
+    findOne(id: number): import(".prisma/client").Prisma.Prisma__ProductClient<{
         id: number;
         title: string;
         price: number;
@@ -36,7 +36,7 @@ export declare class ProductsController {
         description: string;
         image: string;
     }[]>;
-    update(id: string, updateProductDto: UpdateProductDto): import(".prisma/client").Prisma.Prisma__ProductClient<{
+    update(id: number, updateProductDto: UpdateProductDto): import(".prisma/client").Prisma.Prisma__ProductClient<{
         id: number;
         title: string;
         price: number;
@@ -44,7 +44,7 @@ export declare class ProductsController {
         description: string;
         image: string;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: string): import(".prisma/client").Prisma.Prisma__ProductClient<{
+    remove(id: number): import(".prisma/client").Prisma.Prisma__ProductClient<{
         id: number;
         title: string;
         price: number;

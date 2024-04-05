@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { OrderProductsService } from './order-products.service';
 import { CreateOrderProductDto } from './dto/create-order-product.dto';
@@ -36,24 +37,24 @@ export class OrderProductsController {
   @Get(':id')
   @ApiOkResponse({ type: CreateOrderProductDto, isArray: true })
   @UseGuards(UserAuthGuard)
-  findOne(@Param('id') id: string) {
-    return this.orderProductsService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.orderProductsService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: CreateOrderProductDto, isArray: true })
   @UseGuards(UserAuthGuard)
   update(
-    @Param('id') id: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateOrderProductDto: UpdateOrderProductDto,
   ) {
-    return this.orderProductsService.update(+id, updateOrderProductDto);
+    return this.orderProductsService.update(id, updateOrderProductDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: CreateOrderProductDto, isArray: true })
   @UseGuards(UserAuthGuard)
-  remove(@Param('id') id: string) {
-    return this.orderProductsService.remove(+id);
+  remove(@Param('id', ParseIntPipe) id: number) {
+    return this.orderProductsService.remove(id);
   }
 }

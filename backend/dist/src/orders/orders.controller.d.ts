@@ -22,7 +22,7 @@ export declare class OrdersController {
         createdAt: Date;
         updatedAt: Date;
     }[]>;
-    findOne(id: string): import(".prisma/client").Prisma.Prisma__OrderClient<{
+    findOne(id: number): import(".prisma/client").Prisma.Prisma__OrderClient<{
         id: number;
         userId: number;
         total: number;
@@ -30,7 +30,7 @@ export declare class OrdersController {
         createdAt: Date;
         updatedAt: Date;
     }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    update(id: string, updateOrderDto: UpdateOrderDto): import(".prisma/client").Prisma.Prisma__OrderClient<{
+    update(id: number, updateOrderDto: UpdateOrderDto): import(".prisma/client").Prisma.Prisma__OrderClient<{
         id: number;
         userId: number;
         total: number;
@@ -38,7 +38,7 @@ export declare class OrdersController {
         createdAt: Date;
         updatedAt: Date;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: string): import(".prisma/client").Prisma.Prisma__OrderClient<{
+    remove(id: number): import(".prisma/client").Prisma.Prisma__OrderClient<{
         id: number;
         userId: number;
         total: number;

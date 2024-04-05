@@ -31,13 +31,13 @@ let OrdersController = class OrdersController {
         return this.ordersService.findAll();
     }
     findOne(id) {
-        return this.ordersService.findOne(+id);
+        return this.ordersService.findOne(id);
     }
     update(id, updateOrderDto) {
-        return this.ordersService.update(+id, updateOrderDto);
+        return this.ordersService.update(id, updateOrderDto);
     }
     remove(id) {
-        return this.ordersService.remove(+id);
+        return this.ordersService.remove(id);
     }
 };
 exports.OrdersController = OrdersController;
@@ -63,28 +63,28 @@ __decorate([
     (0, common_1.Get)(':id'),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: create_order_dto_1.CreateOrderDto, isArray: true }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: create_order_dto_1.CreateOrderDto, isArray: true }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_order_dto_1.UpdateOrderDto]),
+    __metadata("design:paramtypes", [Number, update_order_dto_1.UpdateOrderDto]),
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: create_order_dto_1.CreateOrderDto, isArray: true }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "remove", null);
 exports.OrdersController = OrdersController = __decorate([

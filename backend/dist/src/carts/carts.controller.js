@@ -32,13 +32,13 @@ let CartsController = class CartsController {
         return this.cartsService.findAll();
     }
     findOne(id) {
-        return this.cartsService.findOne(+id);
+        return this.cartsService.findOne(id);
     }
     update(id, updateCartDto) {
-        return this.cartsService.update(+id, updateCartDto);
+        return this.cartsService.update(id, updateCartDto);
     }
     remove(id) {
-        return this.cartsService.remove(+id);
+        return this.cartsService.remove(id);
     }
 };
 exports.CartsController = CartsController;
@@ -64,28 +64,28 @@ __decorate([
     (0, common_1.Get)(':id'),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: cart_entity_1.CartEntity, isArray: true }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], CartsController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     (0, swagger_1.ApiOkResponse)({ type: cart_entity_1.CartEntity, isArray: true }),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_cart_dto_1.UpdateCartDto]),
+    __metadata("design:paramtypes", [Number, update_cart_dto_1.UpdateCartDto]),
     __metadata("design:returntype", void 0)
 ], CartsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: cart_entity_1.CartEntity, isArray: true }),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], CartsController.prototype, "remove", null);
 exports.CartsController = CartsController = __decorate([
