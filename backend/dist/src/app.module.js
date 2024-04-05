@@ -16,6 +16,7 @@ const products_module_1 = require("./products/products.module");
 const orders_module_1 = require("./orders/orders.module");
 const wishlists_module_1 = require("./wishlists/wishlists.module");
 const carts_module_1 = require("./carts/carts.module");
+const order_products_module_1 = require("./order-products/order-products.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,6 +29,7 @@ exports.AppModule = AppModule = __decorate([
             orders_module_1.OrdersModule,
             wishlists_module_1.WishlistsModule,
             carts_module_1.CartsModule,
+            order_products_module_1.OrderProductsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

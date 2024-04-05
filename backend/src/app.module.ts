@@ -8,6 +8,7 @@ import { OrdersModule } from './orders/orders.module';
 import { WishlistsModule } from './wishlists/wishlists.module';
 import { CartsModule } from './carts/carts.module';
 import { JwtModule } from '@nestjs/jwt';
+import { OrderProductsModule } from './order-products/order-products.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { JwtModule } from '@nestjs/jwt';
     OrdersModule,
     WishlistsModule,
     CartsModule,
+    OrderProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

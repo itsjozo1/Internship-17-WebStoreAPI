@@ -59,7 +59,7 @@ model Cart {
 }
 
 model CartProduct {
-  id        Int     @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   cartId    Int
   cart      Cart    @relation(fields: [cartId], references: [id])
   productId Int
@@ -70,7 +70,7 @@ model CartProduct {
 }
 
 model OrderProduct {
-  id        Int     @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   orderId   Int
   order     Order   @relation(fields: [orderId], references: [id])
   productId Int
@@ -81,7 +81,7 @@ model OrderProduct {
 }
 
 model WishlistProduct {
-  id         Int      @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   wishlistId Int
   productId  Int
   wishlist   Wishlist @relation(fields: [wishlistId], references: [id])
