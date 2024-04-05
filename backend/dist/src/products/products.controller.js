@@ -19,6 +19,7 @@ const create_product_dto_1 = require("./dto/create-product.dto");
 const update_product_dto_1 = require("./dto/update-product.dto");
 const swagger_1 = require("@nestjs/swagger");
 const product_entity_1 = require("./entities/product.entity");
+const admin_auth_guard_1 = require("../users/admin-auth.guard");
 let ProductsController = class ProductsController {
     constructor(productsService) {
         this.productsService = productsService;
@@ -45,6 +46,7 @@ let ProductsController = class ProductsController {
 exports.ProductsController = ProductsController;
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: product_entity_1.ProductEntity, isArray: true }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),

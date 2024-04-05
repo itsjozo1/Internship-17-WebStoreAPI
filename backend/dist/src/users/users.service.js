@@ -35,9 +35,6 @@ let UsersService = class UsersService {
         return this.prisma.user.delete({ where: { id } });
     }
     async register(email, password, name) {
-        if (!email || !password || !name) {
-            throw new common_1.BadRequestException('Email, password, and name are required');
-        }
         if (await this.prisma.user.findUnique({ where: { email } })) {
             throw new common_1.BadRequestException('User already exists');
         }
@@ -66,7 +63,7 @@ let UsersService = class UsersService {
             email: user.email,
             role: user.isAdmin ? 'admin' : 'user',
         };
-        return 'ok';
+        return { token: await this.jwtService.signAsync(payload) };
     }
 };
 exports.UsersService = UsersService;

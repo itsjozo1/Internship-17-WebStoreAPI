@@ -37,9 +37,6 @@ export class UsersService {
   }
 
   async register(email: string, password: string, name: string) {
-    if (!email || !password || !name) {
-      throw new BadRequestException('Email, password, and name are required');
-    }
     if (await this.prisma.user.findUnique({ where: { email } })) {
       throw new BadRequestException('User already exists');
     }
@@ -78,6 +75,6 @@ export class UsersService {
       role: user.isAdmin ? 'admin' : 'user',
     };
 
-    return 'ok';
+    return { token: await this.jwtService.signAsync(payload) };
   }
 }

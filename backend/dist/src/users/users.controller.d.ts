@@ -18,21 +18,21 @@ export declare class UsersController {
         name: string;
         isAdmin: boolean;
     }[]>;
-    findOne(id: string): import(".prisma/client").Prisma.Prisma__UserClient<{
+    findOne(id: number): import(".prisma/client").Prisma.Prisma__UserClient<{
         id: number;
         email: string;
         password: string;
         name: string;
         isAdmin: boolean;
     }, null, import("@prisma/client/runtime/library").DefaultArgs>;
-    update(id: string, updateUserDto: UpdateUserDto): import(".prisma/client").Prisma.Prisma__UserClient<{
+    update(id: number, updateUserDto: UpdateUserDto): import(".prisma/client").Prisma.Prisma__UserClient<{
         id: number;
         email: string;
         password: string;
         name: string;
         isAdmin: boolean;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
-    remove(id: string): import(".prisma/client").Prisma.Prisma__UserClient<{
+    remove(id: number): import(".prisma/client").Prisma.Prisma__UserClient<{
         id: number;
         email: string;
         password: string;
@@ -47,5 +47,7 @@ export declare class UsersController {
     login(body: {
         email: string;
         password: string;
-    }): Promise<string>;
+    }): Promise<{
+        token: string;
+    }>;
 }
