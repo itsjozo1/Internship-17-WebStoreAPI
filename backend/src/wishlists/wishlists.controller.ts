@@ -6,12 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { WishlistsService } from './wishlists.service';
 import { CreateWishlistDto } from './dto/create-wishlist.dto';
 import { UpdateWishlistDto } from './dto/update-wishlist.dto';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { WishlistEntity } from './entities/wishlist.entity';
+import { UserAuthGuard } from 'src/users/user-auth.guard';
 
 @Controller('wishlists')
 @ApiTags('wishlists')
@@ -26,6 +28,7 @@ export class WishlistsController {
 
   @Get()
   @ApiOkResponse({ type: WishlistEntity, isArray: true })
+  @UseGuards(UserAuthGuard)
   findAll() {
     return this.wishlistsService.findAll();
   }

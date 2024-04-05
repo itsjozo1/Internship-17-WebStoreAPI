@@ -29,8 +29,4 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ default: false, required: false }),
-    __metadata("design:type", Boolean)
-], CreateUserDto.prototype, "isAdmin", void 0);
 //# sourceMappingURL=create-user.dto.js.map

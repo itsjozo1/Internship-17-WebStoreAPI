@@ -38,6 +38,12 @@ let UsersController = class UsersController {
     remove(id) {
         return this.usersService.remove(+id);
     }
+    register(body) {
+        return this.usersService.register(body.email, body.password, body.name);
+    }
+    login(body) {
+        return this.usersService.login(body.email, body.password);
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -80,6 +86,20 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Post)('register'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "register", null);
+__decorate([
+    (0, common_1.Post)('login'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "login", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     (0, swagger_1.ApiTags)('users'),

@@ -11,14 +11,22 @@ const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const users_controller_1 = require("./users.controller");
 const prisma_module_1 = require("../prisma/prisma.module");
+const jwt_1 = require("@nestjs/jwt");
+const jwt_strategy_1 = require("./jwt.strategy");
 let UsersModule = class UsersModule {
 };
 exports.UsersModule = UsersModule;
 exports.UsersModule = UsersModule = __decorate([
     (0, common_1.Module)({
         controllers: [users_controller_1.UsersController],
-        providers: [users_service_1.UsersService],
-        imports: [prisma_module_1.PrismaModule],
+        providers: [users_service_1.UsersService, jwt_strategy_1.JwtStrategy],
+        imports: [
+            prisma_module_1.PrismaModule,
+            jwt_1.JwtModule.register({
+                secret: process.env.JWT_SECRET_KEY,
+                signOptions: { expiresIn: '2d' },
+            }),
+        ],
     })
 ], UsersModule);
 //# sourceMappingURL=users.module.js.map

@@ -39,4 +39,13 @@ export declare class UsersController {
         name: string;
         isAdmin: boolean;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    register(body: {
+        email: string;
+        password: string;
+        name: string;
+    }): Promise<string>;
+    login(body: {
+        email: string;
+        password: string;
+    }): Promise<string>;
 }

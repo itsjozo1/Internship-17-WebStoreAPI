@@ -7,9 +7,17 @@ import { ProductsModule } from './products/products.module';
 import { OrdersModule } from './orders/orders.module';
 import { WishlistsModule } from './wishlists/wishlists.module';
 import { CartsModule } from './carts/carts.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [PrismaModule, UsersModule, ProductsModule, OrdersModule, WishlistsModule, CartsModule],
+  imports: [
+    PrismaModule,
+    UsersModule,
+    ProductsModule,
+    OrdersModule,
+    WishlistsModule,
+    CartsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })

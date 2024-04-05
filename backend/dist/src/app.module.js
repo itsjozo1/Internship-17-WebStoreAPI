@@ -21,7 +21,14 @@ let AppModule = class AppModule {
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [prisma_module_1.PrismaModule, users_module_1.UsersModule, products_module_1.ProductsModule, orders_module_1.OrdersModule, wishlists_module_1.WishlistsModule, carts_module_1.CartsModule],
+        imports: [
+            prisma_module_1.PrismaModule,
+            users_module_1.UsersModule,
+            products_module_1.ProductsModule,
+            orders_module_1.OrdersModule,
+            wishlists_module_1.WishlistsModule,
+            carts_module_1.CartsModule,
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

@@ -1,9 +1,11 @@
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { JwtService } from '@nestjs/jwt';
 export declare class UsersService {
-    private prisma;
-    constructor(prisma: PrismaService);
+    private readonly prisma;
+    private readonly jwtService;
+    constructor(prisma: PrismaService, jwtService: JwtService);
     create(createUserDto: CreateUserDto): import(".prisma/client").Prisma.Prisma__UserClient<{
         id: number;
         email: string;
@@ -39,4 +41,6 @@ export declare class UsersService {
         name: string;
         isAdmin: boolean;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;
+    register(email: string, password: string, name: string): Promise<string>;
+    login(email: string, password: string): Promise<string>;
 }
