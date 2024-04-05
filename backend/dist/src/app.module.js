@@ -17,6 +17,8 @@ const orders_module_1 = require("./orders/orders.module");
 const wishlists_module_1 = require("./wishlists/wishlists.module");
 const carts_module_1 = require("./carts/carts.module");
 const order_products_module_1 = require("./order-products/order-products.module");
+const cart_products_module_1 = require("./cart-products/cart-products.module");
+const wishlist_products_module_1 = require("./wishlist-products/wishlist-products.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,6 +32,8 @@ exports.AppModule = AppModule = __decorate([
             wishlists_module_1.WishlistsModule,
             carts_module_1.CartsModule,
             order_products_module_1.OrderProductsModule,
+            cart_products_module_1.CartProductsModule,
+            wishlist_products_module_1.WishlistProductsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
