@@ -19,12 +19,14 @@ const create_cart_dto_1 = require("./dto/create-cart.dto");
 const update_cart_dto_1 = require("./dto/update-cart.dto");
 const swagger_1 = require("@nestjs/swagger");
 const cart_entity_1 = require("./entities/cart.entity");
+const user_auth_guard_1 = require("../users/user-auth.guard");
+const admin_auth_guard_1 = require("../users/admin-auth.guard");
 let CartsController = class CartsController {
     constructor(cartsService) {
         this.cartsService = cartsService;
     }
-    create(createCartDto) {
-        return this.cartsService.create(createCartDto);
+    create({ user }, createCartDto) {
+        return this.cartsService.create(user.id, createCartDto);
     }
     findAll() {
         return this.cartsService.findAll();
@@ -43,13 +45,16 @@ exports.CartsController = CartsController;
 __decorate([
     (0, common_1.Post)(),
     (0, swagger_1.ApiOkResponse)({ type: cart_entity_1.CartEntity, isArray: true }),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_cart_dto_1.CreateCartDto]),
+    __metadata("design:paramtypes", [Object, create_cart_dto_1.CreateCartDto]),
     __metadata("design:returntype", void 0)
 ], CartsController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: cart_entity_1.CartEntity, isArray: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -57,6 +62,7 @@ __decorate([
 ], CartsController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: cart_entity_1.CartEntity, isArray: true }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -65,6 +71,8 @@ __decorate([
 ], CartsController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, swagger_1.ApiOkResponse)({ type: cart_entity_1.CartEntity, isArray: true }),
+    (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -73,6 +81,7 @@ __decorate([
 ], CartsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: cart_entity_1.CartEntity, isArray: true }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

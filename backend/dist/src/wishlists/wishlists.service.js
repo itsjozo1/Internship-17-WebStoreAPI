@@ -16,8 +16,10 @@ let WishlistsService = class WishlistsService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create(createWishlistDto) {
-        return this.prisma.wishlist.create({ data: createWishlistDto });
+    create(createWishlistDto, userId) {
+        return this.prisma.wishlist.create({
+            data: { ...createWishlistDto, userId },
+        });
     }
     findAll() {
         return this.prisma.wishlist.findMany();

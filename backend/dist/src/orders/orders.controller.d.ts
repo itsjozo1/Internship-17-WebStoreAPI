@@ -4,7 +4,9 @@ import { UpdateOrderDto } from './dto/update-order.dto';
 export declare class OrdersController {
     private readonly ordersService;
     constructor(ordersService: OrdersService);
-    create(createOrderDto: CreateOrderDto): import(".prisma/client").Prisma.Prisma__OrderClient<{
+    create({ user }: {
+        user: any;
+    }, createOrderDto: CreateOrderDto): import(".prisma/client").Prisma.Prisma__OrderClient<{
         id: number;
         userId: number;
         total: number;

@@ -18,12 +18,14 @@ const orders_service_1 = require("./orders.service");
 const create_order_dto_1 = require("./dto/create-order.dto");
 const update_order_dto_1 = require("./dto/update-order.dto");
 const swagger_1 = require("@nestjs/swagger");
+const admin_auth_guard_1 = require("../users/admin-auth.guard");
+const user_auth_guard_1 = require("../users/user-auth.guard");
 let OrdersController = class OrdersController {
     constructor(ordersService) {
         this.ordersService = ordersService;
     }
-    create(createOrderDto) {
-        return this.ordersService.create(createOrderDto);
+    create({ user }, createOrderDto) {
+        return this.ordersService.create(user.id, createOrderDto);
     }
     findAll() {
         return this.ordersService.findAll();
@@ -41,14 +43,17 @@ let OrdersController = class OrdersController {
 exports.OrdersController = OrdersController;
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: create_order_dto_1.CreateOrderDto, isArray: true }),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_order_dto_1.CreateOrderDto]),
+    __metadata("design:paramtypes", [Object, create_order_dto_1.CreateOrderDto]),
     __metadata("design:returntype", void 0)
 ], OrdersController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: create_order_dto_1.CreateOrderDto, isArray: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -56,6 +61,7 @@ __decorate([
 ], OrdersController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: create_order_dto_1.CreateOrderDto, isArray: true }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -64,6 +70,7 @@ __decorate([
 ], OrdersController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: create_order_dto_1.CreateOrderDto, isArray: true }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -73,6 +80,7 @@ __decorate([
 ], OrdersController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: create_order_dto_1.CreateOrderDto, isArray: true }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

@@ -17,7 +17,6 @@ class CreateOrderDto {
 exports.CreateOrderDto = CreateOrderDto;
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateOrderDto.prototype, "userId", void 0);
 __decorate([
@@ -33,11 +32,13 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], CreateOrderDto.prototype, "createdAt", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], CreateOrderDto.prototype, "updatedAt", void 0);
 //# sourceMappingURL=create-order.dto.js.map

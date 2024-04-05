@@ -7,8 +7,8 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class CartsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createCartDto: CreateCartDto) {
-    return this.prisma.cart.create({ data: createCartDto });
+  create(userId: number, createCartDto: CreateCartDto) {
+    return this.prisma.cart.create({ data: { ...createCartDto, userId } });
   }
 
   findAll() {

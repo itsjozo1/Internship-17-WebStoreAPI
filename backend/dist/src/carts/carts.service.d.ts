@@ -4,7 +4,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export declare class CartsService {
     private prisma;
     constructor(prisma: PrismaService);
-    create(createCartDto: CreateCartDto): import(".prisma/client").Prisma.Prisma__CartClient<{
+    create(userId: number, createCartDto: CreateCartDto): import(".prisma/client").Prisma.Prisma__CartClient<{
         id: number;
         userId: number;
         total: number;

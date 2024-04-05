@@ -1,9 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNumber, IsString } from 'class-validator';
+import { IsDate, IsInt, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateOrderDto {
   @ApiProperty()
-  @IsNumber()
   userId: number;
 
   @ApiProperty()
@@ -16,9 +15,11 @@ export class CreateOrderDto {
 
   @ApiProperty()
   @IsDate()
+  @IsOptional()
   createdAt: Date;
 
   @ApiProperty()
   @IsDate()
+  @IsOptional()
   updatedAt: Date;
 }

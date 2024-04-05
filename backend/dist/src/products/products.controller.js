@@ -78,6 +78,7 @@ __decorate([
 ], ProductsController.prototype, "findByTitle", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: product_entity_1.ProductEntity, isArray: true }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
@@ -87,6 +88,7 @@ __decorate([
 ], ProductsController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     (0, swagger_1.ApiOkResponse)({ type: product_entity_1.ProductEntity, isArray: true }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),

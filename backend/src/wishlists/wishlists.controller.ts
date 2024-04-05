@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { WishlistsService } from './wishlists.service';
 import { CreateWishlistDto } from './dto/create-wishlist.dto';
@@ -23,8 +24,9 @@ export class WishlistsController {
 
   @Post()
   @ApiOkResponse({ type: WishlistEntity, isArray: true })
-  create(@Body() createWishlistDto: CreateWishlistDto) {
-    return this.wishlistsService.create(createWishlistDto);
+  @UseGuards(UserAuthGuard)
+  create(@Req() { user }, @Body() createWishlistDto: CreateWishlistDto) {
+    return this.wishlistsService.create(createWishlistDto, user.id);
   }
 
   @Get()

@@ -4,7 +4,9 @@ import { UpdateWishlistDto } from './dto/update-wishlist.dto';
 export declare class WishlistsController {
     private readonly wishlistsService;
     constructor(wishlistsService: WishlistsService);
-    create(createWishlistDto: CreateWishlistDto): import(".prisma/client").Prisma.Prisma__WishlistClient<{
+    create({ user }: {
+        user: any;
+    }, createWishlistDto: CreateWishlistDto): import(".prisma/client").Prisma.Prisma__WishlistClient<{
         id: number;
         userId: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;

@@ -19,13 +19,14 @@ const create_wishlist_dto_1 = require("./dto/create-wishlist.dto");
 const update_wishlist_dto_1 = require("./dto/update-wishlist.dto");
 const swagger_1 = require("@nestjs/swagger");
 const wishlist_entity_1 = require("./entities/wishlist.entity");
+const user_auth_guard_1 = require("../users/user-auth.guard");
 const admin_auth_guard_1 = require("../users/admin-auth.guard");
 let WishlistsController = class WishlistsController {
     constructor(wishlistsService) {
         this.wishlistsService = wishlistsService;
     }
-    create(createWishlistDto) {
-        return this.wishlistsService.create(createWishlistDto);
+    create({ user }, createWishlistDto) {
+        return this.wishlistsService.create(createWishlistDto, user.id);
     }
     findAll() {
         return this.wishlistsService.findAll();
@@ -44,9 +45,11 @@ exports.WishlistsController = WishlistsController;
 __decorate([
     (0, common_1.Post)(),
     (0, swagger_1.ApiOkResponse)({ type: wishlist_entity_1.WishlistEntity, isArray: true }),
-    __param(0, (0, common_1.Body)()),
+    (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_wishlist_dto_1.CreateWishlistDto]),
+    __metadata("design:paramtypes", [Object, create_wishlist_dto_1.CreateWishlistDto]),
     __metadata("design:returntype", void 0)
 ], WishlistsController.prototype, "create", null);
 __decorate([

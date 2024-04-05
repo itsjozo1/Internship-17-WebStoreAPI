@@ -16,8 +16,8 @@ let CartsService = class CartsService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create(createCartDto) {
-        return this.prisma.cart.create({ data: createCartDto });
+    create(userId, createCartDto) {
+        return this.prisma.cart.create({ data: { ...createCartDto, userId } });
     }
     findAll() {
         return this.prisma.cart.findMany();

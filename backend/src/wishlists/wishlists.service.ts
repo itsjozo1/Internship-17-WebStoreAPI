@@ -7,8 +7,10 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class WishlistsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createWishlistDto: CreateWishlistDto) {
-    return this.prisma.wishlist.create({ data: createWishlistDto });
+  create(createWishlistDto: CreateWishlistDto, userId: number) {
+    return this.prisma.wishlist.create({
+      data: { ...createWishlistDto, userId },
+    });
   }
 
   findAll() {

@@ -17,7 +17,6 @@ class CreateCartDto {
 exports.CreateCartDto = CreateCartDto;
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateCartDto.prototype, "userId", void 0);
 __decorate([
@@ -28,11 +27,13 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], CreateCartDto.prototype, "createdAt", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.IsDate)(),
+    (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Date)
 ], CreateCartDto.prototype, "updatedAt", void 0);
 //# sourceMappingURL=create-cart.dto.js.map

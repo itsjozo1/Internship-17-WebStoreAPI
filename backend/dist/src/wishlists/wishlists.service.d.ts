@@ -4,7 +4,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export declare class WishlistsService {
     private prisma;
     constructor(prisma: PrismaService);
-    create(createWishlistDto: CreateWishlistDto): import(".prisma/client").Prisma.Prisma__WishlistClient<{
+    create(createWishlistDto: CreateWishlistDto, userId: number): import(".prisma/client").Prisma.Prisma__WishlistClient<{
         id: number;
         userId: number;
     }, never, import("@prisma/client/runtime/library").DefaultArgs>;

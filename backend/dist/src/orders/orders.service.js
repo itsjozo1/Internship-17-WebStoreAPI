@@ -16,8 +16,8 @@ let OrdersService = class OrdersService {
     constructor(prisma) {
         this.prisma = prisma;
     }
-    create(createOrderDto) {
-        return this.prisma.order.create({ data: createOrderDto });
+    create(userId, createOrderDto) {
+        return this.prisma.order.create({ data: { ...createOrderDto, userId } });
     }
     findAll() {
         return this.prisma.order.findMany();
