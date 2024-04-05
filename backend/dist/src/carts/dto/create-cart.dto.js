@@ -11,23 +11,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateCartDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
 class CreateCartDto {
 }
 exports.CreateCartDto = CreateCartDto;
 __decorate([
     (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateCartDto.prototype, "userId", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)
 ], CreateCartDto.prototype, "total", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsDate)(),
     __metadata("design:type", Date)
 ], CreateCartDto.prototype, "createdAt", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsDate)(),
     __metadata("design:type", Date)
 ], CreateCartDto.prototype, "updatedAt", void 0);
 //# sourceMappingURL=create-cart.dto.js.map
