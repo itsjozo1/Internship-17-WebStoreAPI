@@ -1,0 +1,35 @@
+.registerContainer {
+  position: relative;
+  padding: 2rem;
+  margin: 3rem auto;
+  display: flex;
+  max-width: 50%;
+  flex-direction: column;
+  gap: 2rem;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.registerInputContainer {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.registerButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+.registerButton:hover {
+  background-color: #0056b3;
+}
