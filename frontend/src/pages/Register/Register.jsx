@@ -3,6 +3,10 @@ import Header from '../../components/Header/Header';
 import CloseButton from '../../components/CloseButton/CloseButton';
 
 function Register() {
+  const changeToLogin = () => {
+    window.location.href = '/login';
+  };
+
   return (
     <>
       <Header />
@@ -20,6 +24,9 @@ function Register() {
           <input type="password" id="confirmPassword" />
         </div>
         <button className={classes.registerButton}>Register</button>
+        <span className={classes.loginLink} onClick={changeToLogin}>
+          Already have account? Click to login
+        </span>
       </div>
     </>
   );

@@ -33,3 +33,13 @@
 .registerButton:hover {
   background-color: #0056b3;
 }
+
+.loginLink {
+  font-size: 0.8rem;
+  margin-top: -0.8rem;
+}
+
+.loginLink:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

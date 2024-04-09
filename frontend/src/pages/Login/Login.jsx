@@ -3,6 +3,10 @@ import Header from '../../components/Header/Header';
 import CloseButton from '../../components/CloseButton/CloseButton';
 
 function Login() {
+  const changeToRegister = () => {
+    window.location.href = '/register';
+  };
+
   return (
     <>
       <Header />
@@ -16,6 +20,9 @@ function Login() {
           <input type="password" id="password" />
         </div>
         <button className={classes.loginButton}>Login</button>
+        <span className={classes.registerLink} onClick={changeToRegister}>
+          Register
+        </span>
       </div>
     </>
   );

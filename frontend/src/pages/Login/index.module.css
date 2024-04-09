@@ -35,3 +35,13 @@
 .loginButton:hover {
   background-color: #0056b3;
 }
+
+.registerLink {
+  font-size: 0.8rem;
+  margin-top: -0.5rem;
+}
+
+.registerLink:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
