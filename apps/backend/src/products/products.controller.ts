@@ -47,7 +47,6 @@ export class ProductsController {
   }
 
   @Patch(':id')
-  @UseGuards(AdminAuthGuard)
   @ApiOkResponse({ type: ProductEntity, isArray: true })
   update(
     @Param('id', ParseIntPipe) id: number,

@@ -14,6 +14,9 @@ const Product = () => {
     const fetchRecommendedProducts = async () => {
       try {
         let fetchedProducts = await getProducts(product.category, 4);
+        if (fetchedProducts.length < 4) {
+          fetchedProducts = await getProducts(null, 4);
+        }
         const filteredProducts = fetchedProducts.filter(
           (product) => product.id !== state.product.id,
         );
@@ -38,7 +41,7 @@ const Product = () => {
           <img src={product.image} alt={product.title} />
           <div className={classes.productPageDesc}>
             <h1>{product.title}</h1>
-            <h3>{product.category + ' ' + product.rating.rate}</h3>
+            <h3>{product.category + ' '}</h3>
             <p>Price: {product.price} €</p>
             <p>{product.description}</p>
           </div>
