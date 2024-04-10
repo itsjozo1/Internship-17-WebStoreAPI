@@ -11,6 +11,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { OrderProductsModule } from './order-products/order-products.module';
 import { CartProductsModule } from './cart-products/cart-products.module';
 import { WishlistProductsModule } from './wishlist-products/wishlist-products.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -23,6 +25,9 @@ import { WishlistProductsModule } from './wishlist-products/wishlist-products.mo
     OrderProductsModule,
     CartProductsModule,
     WishlistProductsModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../../', 'frontend', 'dist'),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
