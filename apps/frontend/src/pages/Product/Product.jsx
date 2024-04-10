@@ -10,6 +10,15 @@ const Product = () => {
   const [recommendedProducts, setRecommendedProducts] = useState([]);
   const navigate = useNavigate();
 
+  const handleImage = (image) => {
+    if (image || typeof image === 'string') {
+      if (image.startsWith('http')) {
+        return image;
+      }
+    }
+    return 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+  };
+
   useEffect(() => {
     const fetchRecommendedProducts = async () => {
       try {
@@ -38,7 +47,7 @@ const Product = () => {
       <Header />
       <div className={classes.productPage}>
         <div className={classes.productPagePreview}>
-          <img src={product.image} alt={product.title} />
+          <img src={handleImage(product.image)} alt={product.title} />
           <div className={classes.productPageDesc}>
             <h1>{product.title}</h1>
             <h3>{product.category + ' '}</h3>
@@ -54,7 +63,7 @@ const Product = () => {
               className={classes.recommendedProductCard}
               onClick={() => handleClick(product)}
             >
-              <img src={product.image} alt={product.title} />
+              <img src={handleImage(product.image)} alt={product.title} />
               <h3>{product.title}</h3>
             </div>
           ))}

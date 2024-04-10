@@ -17,6 +17,15 @@ function ProductsPage() {
   const [filterSearch, setFilterSearch] = useState(search);
   if (search !== filterSearch) setFilterSearch(search);
 
+  const handleImage = (image) => {
+    if (image || typeof image === 'string') {
+      if (image.startsWith('http')) {
+        return image;
+      }
+    }
+    return 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg';
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,7 +62,7 @@ function ProductsPage() {
           navigate(`/products/${product.id}`, { state: { product } });
         }}
       >
-        <img src={product.image} alt={product.title} />
+        <img src={handleImage(product.image)} alt={product.title} />
         <h3>{product.title}</h3>
       </div>
     );
