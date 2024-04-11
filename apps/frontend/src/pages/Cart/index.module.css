@@ -1,0 +1,52 @@
+.cartContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  gap: 1.5rem;
+}
+
+.cartProductCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+}
+
+.cartProductCard img {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.productCardDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: 1.5rem;
+  margin-right: 60%;
+}
+
+.changeQuantityButtonHolder {
+  position: relative;
+  top: -0.5rem;
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 2rem;
+}
+
+.changeQuantityButton {
+  border: none;
+  background: transparent;
+  font-size: 1.5rem;
+  height: 1rem;
+}
+
+.changeQuantityButton:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
