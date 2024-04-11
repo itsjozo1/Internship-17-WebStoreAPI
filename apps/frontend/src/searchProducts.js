@@ -16,8 +16,6 @@ const getProducts = async (selectedCategory, limit) => {
     }
 }
 
-
-
 const getCategories = async () => {
     try {
         const response = await fetch("/api/products");
@@ -83,6 +81,32 @@ const getWishlist = (userId) => {
       });
   };
 
+  const getCartProducts = async (productId) => {
+    try {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartId = cart.cartId;
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user) {
+        return false;
+      }
   
+      const response = await fetch(`/api/cart-products/${cartId}/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+  
+      const data = await response.json();
+      if (data.error) {
+        console.log(data.message);
+      }
+  
+      let isEmpty = data.length === 0;
+      return isEmpty;
+    } catch (error) {
+      console.error('Error fetching cart products:', error);
+      return false;
+    }
+  };  
 
-export { getProducts, getCategories, getWishlist, getCart};
+export { getProducts, getCategories, getWishlist, getCart, getCartProducts};

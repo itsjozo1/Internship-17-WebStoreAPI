@@ -1,39 +1,21 @@
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import classes from './index.module.css';
 import { useState } from 'react';
+import { getCartProducts } from '../../searchProducts.js';
 
 function CartButton(productId) {
-  const getCartProducts = async (productId) => {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartId = cart.cartId;
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (!user) {
-      return false;
-    }
-    fetch(`/api/cart-products/${cartId}/${productId}`, {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          console.log(data.message);
-        }
-        console.log(data);
-        let isEmpty = data.length === 0;
-        setCartProducts(isEmpty);
-      })
-      .catch((error) => {
-        console.error('Error fetching cart products:', error);
-        return false;
-      });
+  const [cartProducts, setCartProducts] = useState(undefined);
+
+  const initialCartProducts = async () => {
+    const cartProducts = await getCartProducts(productId.productId);
+    setCartProducts(cartProducts);
   };
-  const [cartProducts, setCartProducts] = useState(
-    getCartProducts(productId.productId),
-  );
+  if (cartProducts === undefined || cartProducts === cartProducts) {
+    initialCartProducts();
+  }
 
   const handleAddToCart = async () => {
+    setCartProducts(!cartProducts);
     const user = JSON.parse(localStorage.getItem('user'));
     if (!user) {
       alert('Please log in to add items to the cart');

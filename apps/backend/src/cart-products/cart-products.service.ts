@@ -40,6 +40,14 @@ export class CartProductsService {
     });
   }
 
+  findByCartId(cartId: number) {
+    return this.prisma.cartProduct.findMany({
+      where: {
+        cartId: cartId,
+      },
+    });
+  }
+
   findOne(id: number) {
     return this.prisma.cartProduct.findUnique({ where: { id } });
   }

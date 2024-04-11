@@ -35,6 +35,13 @@ export class CartProductsController {
     return this.cartProductsService.findAll();
   }
 
+  @Get(':cartId')
+  @ApiOkResponse({ type: CreateCartProductDto, isArray: true })
+  @UseGuards(UserAuthGuard)
+  findByCartId(@Param('cartId', ParseIntPipe) cartId: number) {
+    return this.cartProductsService.findByCartId(cartId);
+  }
+
   @Get(':cartId/:productId')
   @ApiOkResponse({ type: CreateCartProductDto, isArray: true })
   @UseGuards(UserAuthGuard)
