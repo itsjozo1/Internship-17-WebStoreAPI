@@ -53,7 +53,9 @@ const Header = () => {
           <span
             className={classes.accountCircleIcon}
             onClick={() => {
-              navigate(`/login`);
+              localStorage.getItem('user') === null
+                ? navigate('/login')
+                : navigate('/orders');
             }}
           >
             <AccountCircleIcon />

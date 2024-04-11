@@ -37,6 +37,16 @@ function Register() {
           alert(data.error);
         } else {
           alert('User registered successfully');
+
+          if (localStorage.getItem('user')) {
+            localStorage.removeItem('user');
+          }
+
+          localStorage.setItem(
+            'user',
+            JSON.stringify({ token: data.token, name: data.name }),
+          );
+
           window.location.href = '/orders';
         }
       })

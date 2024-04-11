@@ -16,8 +16,6 @@ function Login() {
       return;
     }
 
-    console.log(JSON.stringify({ email: email, password: password }));
-
     fetch('/api/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -26,15 +24,18 @@ function Login() {
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
-          alert(data.error);
+          alert(data.message);
         } else {
-          alert('User logged in successfully');
-
-          if (document.cookie) {
-            document.cookie = '';
+          if (localStorage.getItem('user')) {
+            localStorage.removeItem('user');
           }
-          document.cookie = `token=${data.token}`;
-          document.cookie = `name=${data.name}`;
+
+          localStorage.setItem(
+            'user',
+            JSON.stringify({ token: data.token, name: data.name }),
+          );
+
+          alert('User logged in successfully');
 
           window.location.href = '/orders';
         }
