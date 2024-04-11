@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import classes from './index.module.css';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
@@ -53,7 +53,7 @@ const Header = () => {
           <span
             className={classes.accountCircleIcon}
             onClick={() => {
-              navigate(`/orders`);
+              navigate(`/login`);
             }}
           >
             <AccountCircleIcon />

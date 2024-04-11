@@ -36,15 +36,22 @@ export class UsersService {
     return this.prisma.user.delete({ where: { id } });
   }
 
-  async register(email: string, password: string, name: string) {
-    if (await this.prisma.user.findUnique({ where: { email } })) {
+  async register(createUserDto: CreateUserDto) {
+    const { email, password, name } = createUserDto;
+
+    const existingUser = await this.prisma.user.findUnique({
+      where: { email },
+    });
+    if (existingUser) {
       throw new BadRequestException('User already exists');
     }
 
     const hashedPassword = await hash(password, 10);
 
-    const user = await this.prisma.user.create({
-      data: { name, email, password: hashedPassword },
+    const user = await this.create({
+      email,
+      password: hashedPassword,
+      name,
     });
 
     const payload = {
@@ -53,9 +60,11 @@ export class UsersService {
       role: user.isAdmin ? 'admin' : 'user',
     };
 
-    await this.jwtService.signAsync(payload);
-
-    return 'ok';
+    return {
+      response: 'ok',
+      token: await this.jwtService.signAsync(payload),
+      name: user.name,
+    };
   }
 
   async login(email: string, password: string) {
@@ -75,6 +84,10 @@ export class UsersService {
       role: user.isAdmin ? 'admin' : 'user',
     };
 
-    return { token: await this.jwtService.signAsync(payload) };
+    return {
+      response: 'ok',
+      token: await this.jwtService.signAsync(payload),
+      name: user.name,
+    };
   }
 }

@@ -7,6 +7,44 @@ function Login() {
     window.location.href = '/register';
   };
 
+  const handleLogin = () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+      alert('All fields are required');
+      return;
+    }
+
+    console.log(JSON.stringify({ email: email, password: password }));
+
+    fetch('/api/users/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          alert('User logged in successfully');
+
+          if (document.cookie) {
+            document.cookie = '';
+          }
+          document.cookie = `token=${data.token}`;
+          document.cookie = `name=${data.name}`;
+
+          window.location.href = '/orders';
+        }
+      })
+      .catch((error) => {
+        alert('An error occurred');
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <Header />
@@ -19,7 +57,9 @@ function Login() {
           <span>Password</span>
           <input type="password" id="password" />
         </div>
-        <button className={classes.loginButton}>Login</button>
+        <button className={classes.loginButton} onClick={handleLogin}>
+          Login
+        </button>
         <span className={classes.registerLink} onClick={changeToRegister}>
           Register
         </span>

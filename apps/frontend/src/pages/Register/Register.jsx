@@ -7,6 +7,45 @@ function Register() {
     window.location.href = '/login';
   };
 
+  const handleRegister = () => {
+    const email = document.getElementById('email').value;
+    const name = document.getElementById('name').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (!email || !name || !password || !confirmPassword) {
+      alert('All fields are required');
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+    console.log(
+      JSON.stringify({ email: email, name: name, password: password }),
+    );
+
+    fetch('/api/users/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, name: name, password: password }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          alert(data.error);
+        } else {
+          alert('User registered successfully');
+          window.location.href = '/orders';
+        }
+      })
+      .catch((error) => {
+        alert('An error occurred');
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <Header />
@@ -23,7 +62,9 @@ function Register() {
           <span>Confirm Password</span>
           <input type="password" id="confirmPassword" />
         </div>
-        <button className={classes.registerButton}>Register</button>
+        <button className={classes.registerButton} onClick={handleRegister}>
+          Register
+        </button>
         <span className={classes.loginLink} onClick={changeToLogin}>
           Already have account? Click to login
         </span>

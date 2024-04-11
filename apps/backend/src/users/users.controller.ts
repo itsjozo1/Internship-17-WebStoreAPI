@@ -53,11 +53,13 @@ export class UsersController {
   }
 
   @Post('register')
-  register(@Body() body: { email: string; password: string; name: string }) {
-    return this.usersService.register(body.email, body.password, body.name);
+  @ApiOkResponse({ type: UserEntity, isArray: true })
+  register(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.register(createUserDto);
   }
 
   @Post('login')
+  @ApiOkResponse({ type: UserEntity, isArray: true })
   login(@Body() body: { email: string; password: string }) {
     return this.usersService.login(body.email, body.password);
   }
