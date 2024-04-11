@@ -126,8 +126,7 @@ const getWishlist = (userId) => {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const user = JSON.parse(localStorage.getItem('user'));
   
-    // Return the promise chain
-    return fetch(`/api/cart-products/${cart.cartId}`, {
+    return fetch(`/api/cart-products/cart/${cart.cartId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -146,6 +145,51 @@ const getWishlist = (userId) => {
         return false;
       });
   }
+
+  const updateCartProduct = async (cartProductId, quantity) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+  
+    return fetch(`/api/cart-products/${cartProductId}`,{
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({ quantity }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          console.log(data.message);
+        }
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Error updating cart product:', error);
+      });
+  }  
+
+  const deleteCartProduct = async (cartProductId) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+  
+    return fetch(`/api/cart-products/${cartProductId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          console.log(data.message);
+        }
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Error deleting cart product:', error);
+      });
+  }
   
 
-export { getProducts, getCategories, getWishlist, getCart, getCartProducts, getAllCartsProducts, getProductById} ;
+export { getProducts, getCategories, getWishlist, getCart, getCartProducts, getAllCartsProducts, getProductById, updateCartProduct, deleteCartProduct} ;

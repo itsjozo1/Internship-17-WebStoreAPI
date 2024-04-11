@@ -30,7 +30,7 @@ export class CartsController {
   }
 
   @Get()
-  @UseGuards(AdminAuthGuard)
+  @UseGuards(UserAuthGuard)
   @ApiOkResponse({ type: CartEntity, isArray: true })
   findAll() {
     return this.cartsService.findAll();
