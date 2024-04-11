@@ -1,0 +1,14 @@
+.cartButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  gap: 5px;
+  width: 7rem;
+}
+
+.cartIcon {
+  width: 20px;
+  height: 20px;
+}

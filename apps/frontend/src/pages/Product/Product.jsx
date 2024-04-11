@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { getProducts } from '../../searchProducts.js';
 import classes from './index.module.css';
 import Header from '../../components/Header/Header.jsx';
+import CartButton from '../../components/CartButton/CartButton.jsx';
 
 const Product = () => {
   const { state } = useLocation();
@@ -53,6 +54,7 @@ const Product = () => {
             <h3>{product.category + ' '}</h3>
             <p>Price: {product.price} €</p>
             <p>{product.description}</p>
+            <CartButton />
           </div>
         </div>
         <div className={classes.recommendedProductsContainer}>

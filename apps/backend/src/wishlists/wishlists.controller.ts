@@ -43,6 +43,13 @@ export class WishlistsController {
     return this.wishlistsService.findOne(id);
   }
 
+  @Get('user/:id')
+  @ApiOkResponse({ type: WishlistEntity, isArray: true })
+  @UseGuards(UserAuthGuard)
+  findUserWishlist(@Req() { user }) {
+    return this.wishlistsService.findUserWishlist(user.id);
+  }
+
   @Patch(':id')
   @ApiOkResponse({ type: WishlistEntity, isArray: true })
   update(

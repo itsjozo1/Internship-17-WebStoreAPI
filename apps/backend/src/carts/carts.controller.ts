@@ -25,7 +25,6 @@ export class CartsController {
 
   @Post()
   @ApiOkResponse({ type: CartEntity, isArray: true })
-  @UseGuards(UserAuthGuard)
   create(@Req() { user }, @Body() createCartDto: CreateCartDto) {
     return this.cartsService.create(user.id, createCartDto);
   }
@@ -42,6 +41,13 @@ export class CartsController {
   @ApiOkResponse({ type: CartEntity, isArray: true })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.cartsService.findOne(id);
+  }
+
+  @Get('user/:id')
+  @UseGuards(UserAuthGuard)
+  @ApiOkResponse({ type: CartEntity, isArray: true })
+  findByUserId(@Param('id', ParseIntPipe) id: number) {
+    return this.cartsService.findByUserId(id);
   }
 
   @Patch(':id')

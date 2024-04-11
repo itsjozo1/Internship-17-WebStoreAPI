@@ -64,6 +64,7 @@ export class UsersService {
       response: 'ok',
       token: await this.jwtService.signAsync(payload),
       name: user.name,
+      id: user.id,
     };
   }
 
@@ -88,6 +89,7 @@ export class UsersService {
       response: 'ok',
       token: await this.jwtService.signAsync(payload),
       name: user.name,
+      id: user.id,
     };
   }
 }

@@ -28,6 +28,17 @@ export class WishlistsService {
     });
   }
 
+  async findUserWishlist(userId: number) {
+    const wishlist = await this.prisma.wishlist.findUnique({
+      where: { userId },
+    });
+    if (!wishlist) {
+      const newWishlist = await this.create({ userId }, userId);
+      return { wishlistId: newWishlist.id };
+    }
+    return { wishlistId: wishlist.id };
+  }
+
   remove(id: number) {
     return this.prisma.wishlist.delete({ where: { id } });
   }
