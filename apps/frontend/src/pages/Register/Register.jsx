@@ -1,6 +1,7 @@
 import classes from './index.module.css';
 import Header from '../../components/Header/Header';
 import CloseButton from '../../components/CloseButton/CloseButton';
+import { getCart, getWishlist } from '../../searchProducts.js';
 
 function Register() {
   const changeToLogin = () => {
@@ -34,7 +35,7 @@ function Register() {
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {
-          alert(data.error);
+          alert(data.message);
         } else {
           alert('User registered successfully');
 
@@ -46,6 +47,9 @@ function Register() {
             'user',
             JSON.stringify({ token: data.token, name: data.name }),
           );
+
+          getCart(data.id);
+          getWishlist(data.id);
 
           window.location.href = '/orders';
         }

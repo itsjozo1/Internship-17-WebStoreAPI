@@ -1,6 +1,7 @@
 import classes from './index.module.css';
 import Header from '../../components/Header/Header';
 import CloseButton from '../../components/CloseButton/CloseButton';
+import { getCart, getWishlist } from '../../searchProducts.js';
 
 function Login() {
   const changeToRegister = () => {
@@ -28,6 +29,8 @@ function Login() {
         } else {
           if (localStorage.getItem('user')) {
             localStorage.removeItem('user');
+            localStorage.removeItem('cart');
+            localStorage.removeItem('wishlist');
           }
 
           localStorage.setItem(
@@ -39,62 +42,12 @@ function Login() {
 
           alert('User logged in successfully');
 
-          //window.location.href = '/orders';
+          window.location.href = '/orders';
         }
       })
       .catch((error) => {
         alert('An error occurred');
         console.error(error);
-      });
-  };
-
-  const getCart = (userId) => {
-    fetch(`/api/carts/user/${userId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.error) {
-          console.error(data.message);
-        } else {
-          if (localStorage.getItem('cart')) {
-            localStorage.removeItem('cart');
-          }
-          localStorage.setItem('cart', JSON.stringify(data));
-        }
-      })
-      .catch((error) => {
-        console.error('Error getting cart:', error);
-      });
-  };
-
-  const getWishlist = (userId) => {
-    fetch(`/api/wishlists/user/${userId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        if (data.error) {
-          console.error(data.message);
-        } else {
-          if (localStorage.getItem('wishlist')) {
-            localStorage.removeItem('wishlist');
-          }
-          localStorage.setItem('wishlist', JSON.stringify(data));
-        }
-      })
-      .catch((error) => {
-        console.error('Error getting wishlist:', error);
       });
   };
 

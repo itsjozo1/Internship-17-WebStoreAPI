@@ -8,12 +8,36 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class CartProductsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createCartProductDto: CreateCartProductDto) {
+  findAll() {
+    return this.prisma.cartProduct.findMany();
+  }
+
+  async create(createCartProductDto: CreateCartProductDto) {
+    const existingCartProduct = await this.prisma.cartProduct.findUnique({
+      where: {
+        cartId_productId: {
+          cartId: createCartProductDto.cartId,
+          productId: createCartProductDto.productId,
+        },
+      },
+    });
+    if (existingCartProduct) {
+      return await this.prisma.cartProduct.delete({
+        where: {
+          id: existingCartProduct.id,
+        },
+      });
+    }
     return this.prisma.cartProduct.create({ data: createCartProductDto });
   }
 
-  findAll() {
-    return this.prisma.cartProduct.findMany();
+  findByProductCartId(cartId: number, productId: number) {
+    return this.prisma.cartProduct.findMany({
+      where: {
+        cartId: cartId,
+        productId: productId,
+      },
+    });
   }
 
   findOne(id: number) {

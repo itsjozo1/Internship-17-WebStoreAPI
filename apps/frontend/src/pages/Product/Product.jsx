@@ -54,7 +54,7 @@ const Product = () => {
             <h3>{product.category + ' '}</h3>
             <p>Price: {product.price} €</p>
             <p>{product.description}</p>
-            <CartButton />
+            <CartButton productId={product.id} />
           </div>
         </div>
         <div className={classes.recommendedProductsContainer}>

@@ -35,4 +35,54 @@ const getCategories = async () => {
     }
 }
 
-export { getProducts, getCategories };
+const getWishlist = (userId) => {
+    fetch(`/api/wishlists/user/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          console.error(data.message);
+        } else {
+          if (localStorage.getItem('wishlist')) {
+            localStorage.removeItem('wishlist');
+          }
+          localStorage.setItem('wishlist', JSON.stringify(data));
+        }
+      })
+      .catch((error) => {
+        console.error('Error getting wishlist:', error);
+      });
+  };
+
+  const getCart = (userId) => {
+    fetch(`/api/carts/user/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem('user')).token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          console.error(data.message);
+        } else {
+          if (localStorage.getItem('cart')) {
+            localStorage.removeItem('cart');
+          }
+          localStorage.setItem('cart', JSON.stringify(data));
+        }
+      })
+      .catch((error) => {
+        console.error('Error getting cart:', error);
+      });
+  };
+
+  
+
+export { getProducts, getCategories, getWishlist, getCart};

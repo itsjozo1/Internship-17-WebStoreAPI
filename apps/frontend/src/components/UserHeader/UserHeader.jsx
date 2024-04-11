@@ -8,6 +8,8 @@ function UserHeader() {
     const confirmed = window.confirm('Are you sure you want to logout?');
     if (confirmed) {
       localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+      localStorage.removeItem('wishlist');
       navigate('/');
     }
   };
