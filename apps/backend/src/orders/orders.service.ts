@@ -15,6 +15,10 @@ export class OrdersService {
     return this.prisma.order.findMany();
   }
 
+  findByUser(userId: number) {
+    return this.prisma.order.findMany({ where: { userId } });
+  }
+
   findOne(id: number) {
     return this.prisma.order.findUnique({ where: { id } });
   }

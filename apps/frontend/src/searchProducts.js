@@ -289,7 +289,7 @@ const postOrder = async (total) => {
     });
 };
 
-const postOrderProducts = async (orderId, products, quantity) => {
+const postOrderProducts = async (orderId, productId, quantity) => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   return fetch(`/api/order-products`, {
@@ -300,7 +300,7 @@ const postOrderProducts = async (orderId, products, quantity) => {
     },
     body: JSON.stringify({
       orderId: orderId,
-      products: products,
+      productId: productId,
       quantity: quantity,
     }),
   })
@@ -312,6 +312,50 @@ const postOrderProducts = async (orderId, products, quantity) => {
     })
     .catch((error) => {
       console.error('Error posting order products:', error);
+    });
+};
+
+const getAllOrdersByUserId = async () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  return fetch(`/api/orders/user/${user.id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${user.token}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.log(data.message);
+      }
+      return data;
+    })
+    .catch((error) => {
+      console.error('Error fetching orders:', error);
+    });
+};
+
+const getProductOrdersByOrder = async (orderId) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  return fetch(`/api/order-products/order/${orderId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${user.token}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.log(data.message);
+      }
+      return data;
+    })
+    .catch((error) => {
+      console.error('Error fetching product orders:', error);
     });
 };
 
@@ -329,4 +373,7 @@ export {
   getWishlistProducts,
   deleteWishlistProduct,
   postOrder,
+  postOrderProducts,
+  getAllOrdersByUserId,
+  getProductOrdersByOrder,
 };

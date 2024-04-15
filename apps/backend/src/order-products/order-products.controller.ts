@@ -41,6 +41,13 @@ export class OrderProductsController {
     return this.orderProductsService.findOne(id);
   }
 
+  @Get('order/:id')
+  @ApiOkResponse({ type: CreateOrderProductDto, isArray: true })
+  @UseGuards(UserAuthGuard)
+  findByOrderId(@Param('id', ParseIntPipe) id: number) {
+    return this.orderProductsService.findByOrderId(id);
+  }
+
   @Patch(':id')
   @ApiOkResponse({ type: CreateOrderProductDto, isArray: true })
   @UseGuards(UserAuthGuard)

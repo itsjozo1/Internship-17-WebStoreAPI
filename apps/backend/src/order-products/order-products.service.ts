@@ -19,6 +19,10 @@ export class OrderProductsService {
     return this.prisma.orderProduct.findUnique({ where: { id } });
   }
 
+  findByOrderId(id: number) {
+    return this.prisma.orderProduct.findMany({ where: { orderId: id } });
+  }
+
   update(id: number, updateOrderProductDto: UpdateOrderProductDto) {
     return this.prisma.orderProduct.update({
       where: { id },

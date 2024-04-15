@@ -3,6 +3,7 @@ import {
   deleteCartProduct,
   getProductById,
   postOrder,
+  postOrderProducts,
 } from '../../searchProducts';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -37,8 +38,16 @@ const CloseOrderButton = () => {
     }
 
     setCartProducts([]);
-    console.log(total);
-    postOrder(total);
+    const order = await postOrder(total);
+    console.log(order);
+    for (const product of finalCartProducts) {
+      try {
+        await postOrderProducts(order.id, product.productId, product.quantity);
+        alert('Order completed');
+      } catch (error) {
+        console.error('Error deleting cart product:', error);
+      }
+    }
     navigate('/orders');
   };
 
