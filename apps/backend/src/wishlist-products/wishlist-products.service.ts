@@ -7,7 +7,24 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class WishlistProductsService {
   constructor(private prisma: PrismaService) {}
 
-  create(createWishlistProductDto: CreateWishlistProductDto) {
+  async create(createWishlistProductDto: CreateWishlistProductDto) {
+    const existingWishlistProduct =
+      await this.prisma.wishlistProduct.findUnique({
+        where: {
+          wishlistId_productId: {
+            wishlistId: createWishlistProductDto.wishlistId,
+            productId: createWishlistProductDto.productId,
+          },
+        },
+      });
+
+    if (existingWishlistProduct) {
+      return this.prisma.wishlistProduct.delete({
+        where: {
+          id: existingWishlistProduct.id,
+        },
+      });
+    }
     return this.prisma.wishlistProduct.create({
       data: createWishlistProductDto,
     });
@@ -19,6 +36,17 @@ export class WishlistProductsService {
 
   findOne(id: number) {
     return this.prisma.wishlistProduct.findUnique({ where: { id } });
+  }
+
+  findByWishlistAndProduct(wishlistId: number, productId: number) {
+    return this.prisma.wishlistProduct.findUnique({
+      where: {
+        wishlistId_productId: {
+          wishlistId,
+          productId,
+        },
+      },
+    });
   }
 
   update(id: number, updateWishlistProductDto: UpdateWishlistProductDto) {

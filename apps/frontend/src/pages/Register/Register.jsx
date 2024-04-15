@@ -51,6 +51,8 @@ function Register() {
           getCart(data.id);
           getWishlist(data.id);
 
+          alert('User registered in successfully');
+
           window.location.href = '/orders';
         }
       })

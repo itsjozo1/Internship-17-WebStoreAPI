@@ -1,0 +1,11 @@
+.inWishlistButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  background-color: red;
+}
+.notInWishlistButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

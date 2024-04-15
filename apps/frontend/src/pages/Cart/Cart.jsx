@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import UserHeader from '../../components/UserHeader/UserHeader';
 import {
   deleteCartProduct,
@@ -10,7 +9,6 @@ import {
 import classes from './index.module.css';
 
 function Cart() {
-  const navigate = useNavigate();
   const [productCards, setProductCards] = useState([]);
   const [quantities, setQuantities] = useState({});
   const [loading, setLoading] = useState(true);
@@ -26,18 +24,11 @@ function Cart() {
 
       const productCardsPromises = cartProducts.map(async (product) => {
         const productData = await getProductById(product.productId);
-        console.log(productData);
         const productQuantity =
           quantities[product.productId] || product.quantity;
 
         return (
-          <div
-            key={product.productId}
-            className={classes.cartProductCard}
-            onClick={() => {
-              navigate(`/products/${product.id}`, { state: { product } });
-            }}
-          >
+          <div key={product.productId} className={classes.cartProductCard}>
             <img src={handleImage(productData.image)} alt={productData.title} />
             <div className={classes.productCardDesc}>
               <h1>{productData.title}</h1>

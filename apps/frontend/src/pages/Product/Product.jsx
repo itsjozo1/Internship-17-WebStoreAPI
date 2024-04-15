@@ -4,6 +4,7 @@ import { getProducts } from '../../searchProducts.js';
 import classes from './index.module.css';
 import Header from '../../components/Header/Header.jsx';
 import CartButton from '../../components/CartButton/CartButton.jsx';
+import WishlistButton from '../../components/WishlistButton/WishlistButton.jsx';
 
 const Product = () => {
   const { state } = useLocation();
@@ -50,7 +51,10 @@ const Product = () => {
         <div className={classes.productPagePreview}>
           <img src={handleImage(product.image)} alt={product.title} />
           <div className={classes.productPageDesc}>
-            <h1>{product.title}</h1>
+            <div className={classes.productHeadlineContainer}>
+              <h1>{product.title}</h1>
+              <WishlistButton productId={product.id} />
+            </div>
             <h3>{product.category + ' '}</h3>
             <p>Price: {product.price} €</p>
             <p>{product.description}</p>

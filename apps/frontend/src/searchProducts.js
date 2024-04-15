@@ -190,6 +190,31 @@ const getWishlist = (userId) => {
         console.error('Error deleting cart product:', error);
       });
   }
+
+  const getWishlistProduct = async (productId) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const wishlist = JSON.parse(localStorage.getItem('wishlist'));
+  
+    return await fetch(`/api/wishlist-products/${wishlist.wishlistId}/${productId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.error) {
+          console.log(data.message);
+        }
+        return data;
+      })
+      .catch(() => {
+        return false;
+      });
+  }
   
 
-export { getProducts, getCategories, getWishlist, getCart, getCartProducts, getAllCartsProducts, getProductById, updateCartProduct, deleteCartProduct} ;
+export { getProducts, getCategories, getWishlist, getCart, getCartProducts, getAllCartsProducts, getProductById, updateCartProduct, deleteCartProduct, getWishlistProduct} ;
