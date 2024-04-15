@@ -1,0 +1,26 @@
+.wishlistContainer {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wishlistProductContainer {
+  padding: 1rem;
+  border: 1px solid gray;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deleteWishlistProductButton {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.deleteWishlistProductButton:hover {
+  opacity: 0.5;
+}

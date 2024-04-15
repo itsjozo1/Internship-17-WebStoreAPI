@@ -49,6 +49,14 @@ export class WishlistProductsService {
     });
   }
 
+  findByWishlistId(wishlistId: number) {
+    return this.prisma.wishlistProduct.findMany({
+      where: {
+        wishlistId: wishlistId,
+      },
+    });
+  }
+
   update(id: number, updateWishlistProductDto: UpdateWishlistProductDto) {
     return this.prisma.wishlistProduct.update({
       where: { id },

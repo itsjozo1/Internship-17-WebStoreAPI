@@ -45,6 +45,13 @@ export class WishlistProductsController {
     return this.wishlistProductsService.findOne(id);
   }
 
+  @Get('/wishlist/:wishlistId')
+  @ApiOkResponse({ type: CreateWishlistProductDto, isArray: true })
+  @UseGuards(UserAuthGuard)
+  findByWishlistId(@Param('wishlistId', ParseIntPipe) wishlistId: number) {
+    return this.wishlistProductsService.findByWishlistId(wishlistId);
+  }
+
   @Get('/:wishlistId/:productId')
   @ApiOkResponse({ type: CreateWishlistProductDto, isArray: true })
   @UseGuards(UserAuthGuard)
