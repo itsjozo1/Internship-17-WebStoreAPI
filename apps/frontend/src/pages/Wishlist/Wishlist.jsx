@@ -33,7 +33,6 @@ function Wishlist() {
   const handleDeleteWishlistProduct = (id) => {
     deleteWishlistProduct(id)
       .then(() => {
-        // After deletion, fetch updated wishlist products
         fetchWishlistProducts();
       })
       .catch((error) => {

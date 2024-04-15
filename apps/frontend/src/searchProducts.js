@@ -160,7 +160,6 @@ const updateCartProduct = async (cartProductId, quantity) => {
       if (data.error) {
         console.log(data.message);
       }
-      console.log(data);
     })
     .catch((error) => {
       console.error('Error updating cart product:', error);
@@ -262,6 +261,60 @@ const deleteWishlistProduct = async (wishlistProductId) => {
     });
 };
 
+const postOrder = async (total) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  const cart = JSON.parse(localStorage.getItem('cart'));
+
+  return fetch(`/api/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${user.token}`,
+    },
+    body: JSON.stringify({
+      userId: cart.cartId,
+      total: total,
+      status: 'completed',
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.log(data.message);
+      }
+      return data;
+    })
+    .catch((error) => {
+      console.error('Error posting order:', error);
+    });
+};
+
+const postOrderProducts = async (orderId, products, quantity) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  return fetch(`/api/order-products`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${user.token}`,
+    },
+    body: JSON.stringify({
+      orderId: orderId,
+      products: products,
+      quantity: quantity,
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.error) {
+        console.log(data.message);
+      }
+    })
+    .catch((error) => {
+      console.error('Error posting order products:', error);
+    });
+};
+
 export {
   getProducts,
   getCategories,
@@ -275,4 +328,5 @@ export {
   getWishlistProduct,
   getWishlistProducts,
   deleteWishlistProduct,
+  postOrder,
 };

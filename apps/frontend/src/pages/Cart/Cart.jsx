@@ -7,6 +7,7 @@ import {
   updateCartProduct,
 } from '../../searchProducts';
 import classes from './index.module.css';
+import CloseOrderButton from '../../components/CloseOrderButton/CloseOrderButton';
 
 function Cart() {
   const [productCards, setProductCards] = useState([]);
@@ -92,6 +93,7 @@ function Cart() {
         <h1>Cart</h1>
         {loading ? <p>Loading...</p> : productCards}
       </div>
+      <CloseOrderButton />
     </>
   );
 }
