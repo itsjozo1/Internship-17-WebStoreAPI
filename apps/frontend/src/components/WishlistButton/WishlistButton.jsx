@@ -6,6 +6,10 @@ import { useState } from 'react';
 
 const WishlistButton = (productId) => {
   const [isInWishlist, setIsinWishlist] = useState(false);
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user === null) {
+    return <></>;
+  }
 
   const getInitialWishlistItem = async () => {
     const wishlistproduct = await getWishlistProduct(productId.productId);
@@ -46,6 +50,7 @@ const WishlistButton = (productId) => {
       });
     setIsinWishlist(!isInWishlist);
   };
+
   return (
     <>
       <button
